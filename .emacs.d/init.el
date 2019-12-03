@@ -198,8 +198,7 @@ With argument ARG, do this that many times."
 
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 (add-to-list 'load-path "~/.emacs.d/cmake")
-(add-to-list 'load-path "/opt/ros/indigo/share/emacs/site-lisp")
-;;(add-to-list 'load-path "/opt/ros/hydro/share/emacs/site-lisp")
+;;(add-to-list 'load-path "/opt/kinetic/indigo/share/emacs/site-lisp")
 ;; or whatever your install space is + "/share/emacs/site-lisp"
 ;; (require 'rosemacs-config)
 
@@ -235,9 +234,9 @@ With argument ARG, do this that many times."
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
 
 ;; server start for emacs-client
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; (require 'server)
+;; (unless (server-running-p)
+;;   (server-start))
 
 (when (require 'saveplace nil t)
   (setq-default save-place t)
@@ -255,6 +254,15 @@ With argument ARG, do this that many times."
        '(("\\.cmake\\'" . cmake-mode))
        auto-mode-alist))
 
+(setq auto-mode-alist
+      (append
+       '(("\\.launch\\'" . xml-mode))
+       auto-mode-alist))
+(setq auto-mode-alist
+      (append
+       '(("\\.ino\\'" . c++-mode))
+       auto-mode-alist))
+
 ;;(load "${CVSDIR}/jsk_common/jsk_tools/dot-files/dot.emacs") ;; jsk標準
 (put 'upcase-region 'disabled nil)
 
@@ -263,6 +271,7 @@ With argument ARG, do this that many times."
 
 (require 'company)
 (global-company-mode)
+(add-hook 'shell-mode-hook '(lambda () (company-mode -1)))
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
