@@ -1,0 +1,23 @@
+[http]
+	sslVerify = false
+[user]
+	name = M-Onitsuka
+	email = tontoko_ton_asagi@yahoo.co.jp
+[color]
+	ui = auto
+[push]
+	default = tracking
+[alias]
+	commit-onitsuka = commit --author=\"onitsuka <onitsuka@jsk.imi.i.u-tokyo.ac.jp>\"
+	co = checkout
+	st = status
+	br = branch
+	d = diff
+	dc = diff --cached
+	di = diff
+	dic = diff --cached
+	lg = log --graph --oneline --decorate=full
+[credential]
+	helper = "cache"
+[core]
+	excludesfile = /home/m-onitsuka/.gitignore_global

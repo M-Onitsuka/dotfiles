@@ -1,6 +1,3 @@
-;;(load "${CVSDIR}/jsk_tendon_robot/install/tendon-init.el")
-;;(load "/home/kawamura/ros/indigo/src/jsk-ros-pkg/jsk_tendon_robot/install/tendon-init.el")
-
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-g" 'goto-line)
 ;;(global-set-key "\M-[" 'backward-paragraph)
@@ -10,12 +7,14 @@
 ;;(global-set-key "\M-h" 'backward-char)
 ;;(global-set-key "\M-l" 'forward-char)
 
-;;(global-set-key "\C-" 'mark-paragraph)
 (global-unset-key "\C-\\")
 
 ;; M-n and M-p
 (global-unset-key "\M-p")
 (global-unset-key "\M-n")
+;; kill jump
+(global-unset-key "\C-x\C-p")
+
 (defun scroll-up-in-place (n)
   (interactive "p")
   (previous-line n)
@@ -39,26 +38,15 @@
   )
 (global-set-key "\C-Q" 'match-paren)
 
-;;global(gtags)
-;; (setq load-path (cons "." load-path))
-;; (require 'gtags)
-;; (global-set-key "\M-t" 'gtags-find-tag)
-;; (global-set-key "\M-r" 'gtags-find-rtag)
-;; (global-set-key "\M-s" 'gtags-find-symbol)
-;; (global-set-key "\M-i" 'gtags-pop-stack)
-
 ;;color
 (defvar my/bg-color "#072532")
 (set-background-color my/bg-color)
 (set-foreground-color "#FFFFFF")
-                                        ;(load-thema 'deep-blue)
 
 (column-number-mode t)
 (which-function-mode t)
 
 ;;tabを空白に
-;;(add-hook 'lisp-mode-hook '(lambda () (setq tab-width 2)))
-;;(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4 indent-tabs-mode nil)
 
 ;;M-h delete word
@@ -92,10 +80,6 @@ With argument ARG, do this that many times."
     (split-window-horizontally))
   (other-window 1))
 (global-set-key "\C-t" 'other-window-or-split)
-
-;;trr22
-;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/trr22")
-;;(autoload 'trr "/usr/share/emacs/site-lisp/trr22/trr" nil)
 
 ;; frame size
 (if (boundp 'window-system)
@@ -198,9 +182,6 @@ With argument ARG, do this that many times."
 
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 (add-to-list 'load-path "~/.emacs.d/cmake")
-;;(add-to-list 'load-path "/opt/kinetic/indigo/share/emacs/site-lisp")
-;; or whatever your install space is + "/share/emacs/site-lisp"
-;; (require 'rosemacs-config)
 
 ;; inhibit startup screen
 (setq inhibit-startup-screen t)
@@ -211,11 +192,6 @@ With argument ARG, do this that many times."
 
 ;; tab->space
 (setq-default tab-width 4 indent-tabs-mode nil)
-
-;; smartparents
-;; (require 'smartparens-config)
-;; (smartparens-global-mode t)
-;; (show-smartparens-global-mode t)
 
 ;; rainbow-delimiters を使うための設定
 (require 'rainbow-delimiters)
@@ -232,11 +208,6 @@ With argument ARG, do this that many times."
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
      (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
-
-;; server start for emacs-client
-;; (require 'server)
-;; (unless (server-running-p)
-;;   (server-start))
 
 (when (require 'saveplace nil t)
   (setq-default save-place t)
@@ -263,7 +234,6 @@ With argument ARG, do this that many times."
        '(("\\.ino\\'" . c++-mode))
        auto-mode-alist))
 
-;;(load "${CVSDIR}/jsk_common/jsk_tools/dot-files/dot.emacs") ;; jsk標準
 (put 'upcase-region 'disabled nil)
 
 (add-to-list 'load-path "~/.emacs-trr")

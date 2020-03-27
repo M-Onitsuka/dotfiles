@@ -76,9 +76,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -125,36 +122,12 @@ alias mv='mv -i'
 alias grep='grep --exclude-dir=.svn'
 alias sl='ls'
 alias em='emacs -nw -f shell'
-alias emacs_ito='emacs -nw -f shell'
 alias e='emacs -nw'
-alias arduino='~/catkin_ws/src/jsk-ros-pkg/jsk-ros-pkg-unreleased/jsk_rosserial_arduino/jsk_arduino/bin/arduino-1.8.3/arduino'
 alias ro='read_only_emacs'
-alias sourceros='source ${HOME}/catkin_ws/devel/setup.bash && source ${HOME}/catkin_ws/src/jsk-ros-pkg/jsk_tendon_robot/install/bashrc.tendon'
 
 ## SVN and SSH
 export SSH_USER=onitsuka
 export SVN_SSH="ssh -l ${SSH_USER}"
-
-## Rviz for a laptop user
-export OGRE_RTT_MODE=Copy
-
-source /opt/ros/kinetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
-
-export CVSDIR=${HOME}/catkin_ws/src/jsk-ros-pkg
-export EUSLIBDIR=${CVSDIR}/euslib
-export RBRAPPDIR=${CVSDIR}/rbrapp
-export KOTAROPATH=${CVSDIR}/jsk_tendon_robot/tendon_tools
-export H8DIR=${CVSDIR}/h8_tools
-export H8INCLUDEPATH=${CVSDIR}/h8_tools/include
-export JIKKENDIR=${CVSDIR}/jsk_tendon_robot/tendon_tools/jikken
-
-export ROSLAUNCH_SSH_UNKNOWN=1
-
-# source tendon setting
-if [ -f ${HOME}/catkin_ws/src/jsk-ros-pkg/jsk_tendon_robot/install/bashrc.tendon ]; then
-    source ${HOME}/catkin_ws/src/jsk-ros-pkg/jsk_tendon_robot/install/bashrc.tendon
-fi
 
 # display branch name(14.04)
 if [ -f $BASH_COMPLETION_COMPAT_DIR/git-prompt ]; then
