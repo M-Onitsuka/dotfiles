@@ -130,8 +130,8 @@ export SSH_USER=onitsuka
 export SVN_SSH="ssh -l ${SSH_USER}"
 
 # display branch name(14.04)
-if [ -f $BASH_COMPLETION_COMPAT_DIR/git-prompt ]; then
-    export PS1='\[\033[01;32m\]\u@\h\[\033[01;33m\] \w$(__git_ps1) (ROBOT=$ROBOT) \n\[\033[01;34m\] \$\[\033[00m\] '
+if [ -f /etc/bash_completion.d/git-prompt ]; then
+    export PS1='\[\033[01;32m\]\u@\h\[\033[01;33m\] \w$(__git_ps1) \n\[\033[01;34m\] \$\[\033[00m\] '
 else
-    export PS1='1;3409;0c\[\033[01;32m\]\u@\h\[\033[01;33m\] \w (ROBOT=$ROBOT) \n\[\033[0;34m\]\$\[\033[00m\] '
+    export PS1='\[\033[01;32m\]\u@\h\[\033[01;33m\] \w \n\[\033[0;34m\]\$\[\033[00m\] '
 fi
