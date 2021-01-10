@@ -1,11 +1,5 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-g" 'goto-line)
-;;(global-set-key "\M-[" 'backward-paragraph)
-;;(global-set-key "\M-]" 'forward-paragraph)
-(global-set-key "\M-j" 'next-line)
-(global-set-key "\M-k" 'previous-line)
-;;(global-set-key "\M-h" 'backward-char)
-;;(global-set-key "\M-l" 'forward-char)
 
 (global-unset-key "\C-\\")
 
@@ -141,13 +135,6 @@ With argument ARG, do this that many times."
                     :background my/bg-color)
 
 (setq
- ;; クリップボードでコピー＆ペーストできるようにする
- x-select-enable-clipboard t
- ;; PRIMARY selectionを使う(Windowsでは対象外)
- x-select-enable-primary t
- ;; クリップボードでコピー・カットした文字列を
- ;; キルリングにも保存させる
- save-interprogram-paste-before-kill t
  ;; エラー時などはベル音ではなくて画面を1回点滅させる
  visible-bell t
  ;; バックアップファイルはカレントディレクトリではなく
@@ -158,11 +145,11 @@ With argument ARG, do this that many times."
 ;;tendon-init.elから重複しない設定
 (require 'cl)
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+;;
 (package-initialize)
-
+;;
 (defvar installing-package-list
   '(
     ;; package list to use
@@ -179,9 +166,6 @@ With argument ARG, do this that many times."
     (package-refresh-contents)
     (dolist (pkg not-installed)
       (package-install pkg))))
-
-(add-to-list 'load-path "~/.emacs.d/elpa/")
-(add-to-list 'load-path "~/.emacs.d/cmake")
 
 ;; inhibit startup screen
 (setq inhibit-startup-screen t)
@@ -217,27 +201,6 @@ With argument ARG, do this that many times."
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
 
-;;cmake mode
-(require 'cmake-mode)
-(setq auto-mode-alist
-      (append
-       '(("CMakeLists\\.txt\\'" . cmake-mode))
-       '(("\\.cmake\\'" . cmake-mode))
-       auto-mode-alist))
-
-(setq auto-mode-alist
-      (append
-       '(("\\.launch\\'" . xml-mode))
-       auto-mode-alist))
-(setq auto-mode-alist
-      (append
-       '(("\\.ino\\'" . c++-mode))
-       auto-mode-alist))
-
-(put 'upcase-region 'disabled nil)
-
-(add-to-list 'load-path "~/.emacs-trr")
-(require 'trr)
 
 (require 'company)
 (global-company-mode)
