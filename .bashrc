@@ -110,24 +110,21 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
 function read_only_emacs() {
     [ -f "$1" ] || (echo "ファイルが見つかりませんでした: $1" >&2; exit 1)
     emacs "$1" --eval '(setq buffer-read-only t)' -nw
 }
 
 ## Alias Commands
-alias rm='rm -i'
+#alias rm='rm -i'
+alias rm='trash-put'
 alias cp='cp -i'
 alias mv='mv -i'
-alias grep='grep --exclude-dir=.svn'
 alias sl='ls'
 alias em='emacs -nw -f shell'
 alias e='emacs -nw'
 alias ro='read_only_emacs'
-
-## SVN and SSH
-export SSH_USER=onitsuka
-export SVN_SSH="ssh -l ${SSH_USER}"
 
 # display branch name(14.04)
 if [ -f /etc/bash_completion.d/git-prompt ]; then
