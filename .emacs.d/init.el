@@ -64,9 +64,6 @@ With argument ARG, do this that many times."
     (backward-delete-word 1)))
 (global-set-key "\C-w" 'kill-region-or-backward-delete-word)
 
-;;C-c C-k カーソルから行先頭まで削除
-(global-set-key (kbd "C-c C-k") '(lambda () (interactive) (kill-line 0)))
-
 ;;C-t action:ウィンドウが複数あれば移動、一つならウィンドウ作成
 (defun other-window-or-split ()
   (interactive)
@@ -135,6 +132,9 @@ With argument ARG, do this that many times."
                     :background my/bg-color)
 
 (setq
+ ;; クリップボードでコピー・カットした文字列を
+ ;; キルリングにも保存させる
+ save-interprogram-paste-before-kill t
  ;; エラー時などはベル音ではなくて画面を1回点滅させる
  visible-bell t
  ;; バックアップファイルはカレントディレクトリではなく
@@ -145,17 +145,19 @@ With argument ARG, do this that many times."
 ;;tendon-init.elから重複しない設定
 (require 'cl)
 (require 'package)
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;;
+;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (package-initialize)
-;;
+
 (defvar installing-package-list
   '(
     ;; package list to use
     whitespace
     smartparens
     rainbow-delimiters
+    yaml-mode
+    markdown-mode
     ))
 
 ;; automatically install
@@ -200,7 +202,6 @@ With argument ARG, do this that many times."
 (prefer-coding-system 'utf-8)
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
-
 
 (require 'company)
 (global-company-mode)
@@ -259,7 +260,7 @@ With argument ARG, do this that many times."
   (list (concat "(" (regexp-opt '("load") t) "\\>") '(1 font-lock-keyword-face nil t))
   (list (concat "(" (regexp-opt '("setq") t) "\\>") '(1 font-lock-type-face nil t))
   )
-  )
+ )
 
 ;; Highlight special keywords
 (require 'hl-todo)
@@ -290,4 +291,7 @@ With argument ARG, do this that many times."
      ("INFO" . "#5f7f5f")
      ("WARNING" . "orange")
      ("ERROR" . "red")
-     ("FATAL" . "red")))))
+     ("FATAL" . "red"))))
+ '(package-selected-packages
+   (quote
+    (markdown-mode yaml-mode smartparens rainbow-delimiters hl-todo company))))
