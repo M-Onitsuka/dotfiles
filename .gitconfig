@@ -8,7 +8,6 @@
 [push]
 	default = tracking
 [alias]
-	#commit-onitsuka = commit --author=\"onitsuka <onitsuka@jsk.imi.i.u-tokyo.ac.jp>\"
 	co = checkout
 	st = status
 	br = branch
